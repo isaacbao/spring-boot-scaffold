@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev
+  aop:
+    auto: true
+    proxy-target-class: true
+  jpa:
+    javax:
+      persistence:
+        sharedCache:
+          mode: ENABLE_SELECTIVE
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        cache:
+          provider_class: org.hibernate.cache.EhCacheProvider
+          use_second_level_cache: true
+          region:
+            factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+  datasource:
+    tomcat:
+      max-wait: 20000
+      max-active: 50
+      max-idle: 20
+      min-idle: 15

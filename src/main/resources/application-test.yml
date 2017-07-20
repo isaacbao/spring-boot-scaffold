@@ -1,0 +1,25 @@
+# 测试环境配置
+server:
+  port: 2333
+
+spring:
+  datasource:
+    url: jdbc:mysql://172.18.2.113:3306/talent_item
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 172.18.1.103
+    port: 10086
+    password: TianTianJian$233
+
+logging:
+  level:
+    item: DEBUG
+
+com:
+  kingdee:
+    talent:
+      item:
+        swagger:
+          enable: true

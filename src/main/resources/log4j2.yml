@@ -1,0 +1,35 @@
+Configuration:
+  appenders:
+    #输出到控制台
+    console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: '%d{YYYY-MM-dd HH:mm:ss.SSS} [%t] %highlight{%-5level %logger{1.}:%L} - %msg%n{%throwable{short
+        .fileName}}{FATAL=white,ERROR=red,
+          WARN=yellow, INFO=black, DEBUG=green, TRACE=blue}'
+
+    # 输出到文件，超过2048MB归档
+    RollingFile:
+    - name: RollingFile_Appender
+      fileName: /logs/events-csg-adapter/app.log
+      filePattern: "/logs/events-csg-adapter/event-csg-adapter-%i.log.%d{yyyy-MM-dd}"
+      #设置日志级别的颜色
+      PatternLayout:
+        pattern: '%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{1.}:%L - %msg%n}{%throwable{short.fileName}}{FATAL=white,ERROR=red,
+                           WARN=blue, INFO=black, DEBUG=green, TRACE=blue}'
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: 2048 M
+        DefaultRollOverStrategy:
+          max: 10
+  Loggers:
+    Root:
+      AppenderRef:
+      - ref: Console_Appender
+      - ref: RollingFile_Appender
+    logger:
+    - name: org.springframework
+      level: warn
+    - name: io.github.isaacbao.scaffold
+      level: debug

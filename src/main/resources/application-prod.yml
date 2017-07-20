@@ -1,0 +1,25 @@
+# 正式环境配置
+server:
+  port: 2333
+
+spring:
+  datasource:
+    url: jdbc:mysql://10.244.4.28:3306/talent_item
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: localhost
+    port: 6379
+    password:
+
+logging:
+  level:
+    item: INFO
+
+com:
+  kingdee:
+    talent:
+      item:
+        swagger:
+          enable: false
