@@ -1,7 +1,6 @@
 package io.github.isaacbao.scaffold.util;
 
 import io.github.isaacbao.scaffold.system.exception.HttpRequestFailException;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -68,8 +67,7 @@ public class HttpAgent {
         StringBuilder sb = new StringBuilder();
         pm.forEach((k, v) -> {
             logger.info("key:" + k + ",value:" + v);
-            sb.append(URLEncodedUtils.parse(k, StandardCharsets.UTF_8)).append("=").append(URLEncodedUtils.parse(v,
-                    StandardCharsets.UTF_8));
+            sb.append(HttpUtils.urlEncodeWithUTF8(k)).append("=").append(HttpUtils.urlEncodeWithUTF8(v));
             sb.append("&");
         });
         return sb;

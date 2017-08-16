@@ -6,7 +6,11 @@ import org.apache.logging.log4j.Logger;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
+import java.io.UnsupportedEncodingException;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
@@ -32,9 +36,6 @@ public class HttpUtils {
 
     }
 
-    /**
-     */
-
     public static void truseAllHttpsCert() {
         try {
             SSLUtils.trustAllHttpsCertificates();
@@ -50,5 +51,23 @@ public class HttpUtils {
             }
         };
         HttpsURLConnection.setDefaultHostnameVerifier(hv);
+    }
+
+    public static String urlEncodeWithUTF8(String str) {
+        try {
+            return URLEncoder.encode(str, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+    public static String urlEncode(String str, Charset charset) {
+        try {
+            return URLEncoder.encode(str, charset.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return str;
     }
 }
