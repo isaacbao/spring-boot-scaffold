@@ -4,22 +4,22 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://172.18.2.113:3306/talent_item
+    url: jdbc:mysql://233.233.233.233:3306/scaffold_item
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
   redis:
-    host: 172.18.1.103
+    host: 233.233.233.233
     port: 10086
-    password: TianTianJian$233
+    password: 23333
 
 logging:
   level:
     item: DEBUG
 
 com:
-  kingdee:
-    talent:
+  isaacbao:
+    scaffold:
       item:
         swagger:
           enable: true

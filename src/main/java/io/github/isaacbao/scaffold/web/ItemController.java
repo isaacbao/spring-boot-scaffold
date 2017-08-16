@@ -27,7 +27,7 @@ public class ItemController {
     private ItemService itemService;
 
     @Autowired
-    private CommonPretreatment cloudFamilyPretreatment;
+    private CommonPretreatment commonPretreatment;
 
     /**
      * 查询所有物品
@@ -40,7 +40,7 @@ public class ItemController {
     })
     @RequestMapping(value = "/search", method = {RequestMethod.GET, RequestMethod.POST})
     public ResponseInfo searchitem(HttpServletRequest request) {
-        return cloudFamilyPretreatment.pretreat(request, (req, user, pm) -> itemService.searchItem(user, pm));
+        return commonPretreatment.pretreat(request, (req, user, pm) -> itemService.searchItem(user, pm));
     }
 
     /**
@@ -50,7 +50,7 @@ public class ItemController {
     @ApiImplicitParam(name = "id", value = "物品信息的ID", required = true, dataType = "String")
     @RequestMapping(value = "/get", method = {RequestMethod.GET, RequestMethod.POST})
     public ResponseInfo getitem(HttpServletRequest request, String id) {
-        return cloudFamilyPretreatment.pretreat(request, (req, user, pm) -> itemService.getItem(user, id));
+        return commonPretreatment.pretreat(request, (req, user, pm) -> itemService.getItem(user, id));
     }
 
     /**
@@ -61,7 +61,7 @@ public class ItemController {
     @ApiImplicitParam(name = "item", value = "物品信息的ID", required = true, dataType = "item")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseInfo additem(HttpServletRequest request) {
-        return cloudFamilyPretreatment.pretreat(request, (req, user, pm) -> {
+        return commonPretreatment.pretreat(request, (req, user, pm) -> {
             itemService.addItem(user, pm);
             return "";
         });
@@ -74,7 +74,7 @@ public class ItemController {
     @ApiOperation(value = "编辑物品", notes = "变更某个物品的信息",consumes="application/xml;charset=UTF-8")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseInfo updateitem(HttpServletRequest request) throws Exception {
-        return cloudFamilyPretreatment.pretreat(request, (req, user, pm) -> {
+        return commonPretreatment.pretreat(request, (req, user, pm) -> {
             itemService.updateItem(user, pm);
             return "";
         });
