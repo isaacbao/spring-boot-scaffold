@@ -35,8 +35,10 @@ public class ItemController {
      */
     @ApiOperation(value = "查询物品", notes = "根据条件查询物品，返回列表", response = ResponseInfo.class,consumes="application/xml;charset=UTF-8")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNumber", value = "页数", required = true, dataType = "Integer"),
-            @ApiImplicitParam(name = "pageSize", value = "每页显示条数", required = true, dataType = "Integer")
+            @ApiImplicitParam(name = "pageNumber", value = "页数", required = true, dataType = "Integer",paramType =
+                    "form"),
+            @ApiImplicitParam(name = "pageSize", value = "每页显示条数", required = true, dataType = "Integer",paramType =
+                    "form")
     })
     @RequestMapping(value = "/search", method = {RequestMethod.GET, RequestMethod.POST})
     public ResponseInfo searchitem(HttpServletRequest request) {
@@ -47,7 +49,8 @@ public class ItemController {
      * 查看单条物品的详细信息
      */
     @ApiOperation(value = "查看物品", notes = "查看单条物品的详细信息", response = ResponseInfo.class,consumes="application/xml;charset=UTF-8")
-    @ApiImplicitParam(name = "id", value = "物品信息的ID", required = true, dataType = "String")
+    @ApiImplicitParam(name = "id", value = "物品信息的ID", required = true, dataType = "String",paramType =
+            "form")
     @RequestMapping(value = "/get", method = {RequestMethod.GET, RequestMethod.POST})
     public ResponseInfo getitem(HttpServletRequest request, String id) {
         return commonPretreatment.pretreat(request, (req, user, pm) -> itemService.getItem(user, id));
@@ -58,7 +61,8 @@ public class ItemController {
      *
      */
     @ApiOperation(value = "新增物品",consumes="application/xml;charset=UTF-8")
-    @ApiImplicitParam(name = "item", value = "物品信息的ID", required = true, dataType = "item")
+    @ApiImplicitParam(name = "item", value = "物品信息的ID", required = true, dataType = "item",paramType =
+            "form")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseInfo additem(HttpServletRequest request) {
         return commonPretreatment.pretreat(request, (req, user, pm) -> {
